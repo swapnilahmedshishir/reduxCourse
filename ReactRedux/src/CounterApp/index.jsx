@@ -1,6 +1,6 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import {createStore} from 'redux';
+// import {createStore} from 'redux';
+import counterView from './counterView';
+
 // type 
 const INCREMTCOUNTER = 'INCREMTCOUNTER';
 const DECREMTCOUNTER = 'DECREMTCOUNTER';
@@ -12,7 +12,7 @@ const initialState = {
    }
 
    // Action
-   const incrementCounte = () => {
+  const incrementCounte = () => {
     return {
        type:INCREMTCOUNTER
     }
@@ -32,7 +32,7 @@ const initialState = {
 
 // reducer 
 
-const counterReducer = (state = initialState , action ) => {
+export const counterReducer = (state = initialState , action ) => {
     switch (action.type) {
         case INCREMTCOUNTER:
             return {
@@ -55,33 +55,6 @@ const counterReducer = (state = initialState , action ) => {
 }
 
 //store 
-export const store = createStore(counterReducer);
-
-// main app
-const Counter = () => {
-    const count = useSelector(state => state.count);
-    const dispatch = useDispatch();
-
-const handleincrement = () => {
-       dispatch(incrementCounte())
-    }
-const handleReset = () => {
-        dispatch(resetCounter())
-    }
-const handleDecerement = () => {
-        dispatch(decrementCounte())
-    }
-  return (
-    <div>
-      <h2>Counter: {count}</h2>
-      <button onClick={handleincrement}>increment</button>
-      <button onClick={handleReset}>Reset</button>
-      <button onClick={handleDecerement}>Decerement</button>
-    </div>
-  )
-}
-
-export default Counter
-
+// export const store = createStore(counterReducer);
 
 // state -> action -> reducer -> store
