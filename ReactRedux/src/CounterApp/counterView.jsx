@@ -1,25 +1,17 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { incrementCounte , decrementCounte,resetCounter} from './CounterSlice';
 const CounterView = () => {
-  // main app
-    const count = useSelector(state => state.count);
-    const dispatch = useDispatch();
+  const {count} =  useSelector((state) => state.counter)
+  // console.log(count);
+  const dispatch = useDispatch()
 
-const handleincrement = () => {
-       dispatch(incrementCounte())
-    }
-const handleReset = () => {
-        dispatch(resetCounter())
-    }
-const handleDecerement = () => {
-        dispatch(decrementCounte())
-    }
-  return (
+    return (
     <div>
       <h2>Counter: {count}</h2>
-      <button onClick={handleincrement}>increment</button>
-      <button onClick={handleReset}>Reset</button>
-      <button onClick={handleDecerement}>Decerement</button>
+      <button onClick={()=> dispatch(incrementCounte())}>increment</button>
+      <button onClick={()=> dispatch(resetCounter())} >Reset</button>
+      <button onClick={()=> dispatch( decrementCounte())}>Decerement</button>
     </div>
   )
 }
